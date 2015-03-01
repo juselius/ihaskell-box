@@ -13,22 +13,25 @@ $ vagrant up
 ```
 ## Usage
 
-#### Linux
+##### Linux
     $ xdg-open http://localhost:8778
 
-#### MacOS
+##### MacOS
     $ open http://localhost:8778
 
-#### Windows
+##### Windows
     C:\> notthefaintestidea.exe
 
-### Connecting to the VM
+#### Connecting to the VM
     $ vagrant ssh
 
-### Shutting down
+#### Shutting down
     $ vagrant halt
 
-### Removing the VM
+#### Removing the VM
     $ vagrant destroy
     $ vagrant box remove ihaskell
 
+## Building the VM
+The ``build/`` directory contains the Vagrant setup to create the ihaskell
+box. See ``build/bootstrap.sh`` for details.
