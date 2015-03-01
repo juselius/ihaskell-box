@@ -1,0 +1,28 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = "2"
+
+
+# I don't know anything about Ruby! I am sorry!
+
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+    config.vm.box = "ubuntu/trusty64"
+    config.ssh.insert_key = false
+    config.vm.network :forwarded_port, host: 8778, guest: 8778
+
+    config.vm.provider "virtualbox" do |v|
+        v.memory = 2048
+    end
+
+    config.vm.define "haskell-vm" do |node|
+        node.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'" # see https://github.com/mitchellh/vagrant/issues/1673
+        node.vm.provision "shell",
+            path: "bootstrap.sh",
+            privileged: false,
+            keep_color: true
+    end
+
+end
