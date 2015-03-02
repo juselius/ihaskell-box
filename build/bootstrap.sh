@@ -83,4 +83,13 @@ git pull
 EOF
 chmod 755 ~/run_haskell_intro.sh
 
+# make upstart job for run_haskell_intro
+sudo cat << EOF > /etc/init/haskell_intro.conf
+description "Jonas' Haskell intro"
+start on runlevel [2345]
+stop on runlevel [06]
+respawn
+exec /bin/su vagrant /home/vagrant/run_haskell_intro.sh
+EOF
+
 sudo sed -i '/^exit 0/i sudo -u /home/vagrant/run_haskell_intro.sh &'
