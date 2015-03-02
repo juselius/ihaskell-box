@@ -60,12 +60,12 @@ p=$!
 sleep 15
 kill -HUP $p
 
-git clone https://github.com/juselius/haskell-intro.sh
 if [ ~/.ipython/profile_haskell/ipython_notebook_config.py ]; then
-    echo "c.NotebookApp.ip = "0.0.0.0"" >> \
+    echo 'c.NotebookApp.ip = "0.0.0.0"' >> \
         ~/.ipython/profile_haskell/ipython_notebook_config.py
 fi
 
+git clone https://github.com/juselius/haskell-intro.git
 cat << EOF > ~/run_haskell_intro.sh
 #!/bin/bash
 cd ~/haskell-intro
@@ -76,10 +76,11 @@ EOF
 chmod 755 ~/run_haskell_intro.sh
 
 # make upstart job for run_haskell_intro
-sudo cat << EOF > /etc/init/haskell_intro.conf
+cat << EOF > /tmp/haskell_intro.conf
 description "Jonas' Haskell intro"
 start on runlevel [2345]
 stop on runlevel [06]
 respawn
 exec /bin/su vagrant /home/vagrant/run_haskell_intro.sh
 EOF
+sudo mv /tmp/haskell_intro.conf /etc/init/
