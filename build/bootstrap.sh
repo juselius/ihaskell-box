@@ -77,6 +77,7 @@ fi
 cat << EOF > ~/run_haskell_intro.sh
 #!/bin/bash
 cd ~/haskell-intro
+git reset --hard HEAD
 git pull
 ~/.cabal/bin/IHaskell notebook -s .
 EOF
