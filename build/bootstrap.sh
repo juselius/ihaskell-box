@@ -18,18 +18,10 @@ sudo apt-get install -y zlib1g-dev libzmq3-dev libtinfo-dev
 sudo apt-get install -y git zsh pkgconf
 sudo apt-get install -y ipython-notebook python-dev python-pip
 
-sudo pip install --upgrade ipython
+# we need ipython notebook from the 2.x branch, not 1.x and not 3.x
+sudo pip install --upgrade "ipython==2.3.0"
 sudo pip install --upgrade tornado
 sudo pip install --upgrade jsonschema
-
-# we need ipython notebook from the 2.x branch, not 1.x and not 3.x
-cd /tmp
-git clone https://github.com/ipython/ipython.git
-cd /tmp/ipython
-git checkout 2.x
-git submodule init
-git submodule update
-sudo ./setup.py install
 
 cat >> ~/.bashrc <<EOF
 export PATH=/opt/cabal/1.20/bin:/opt/ghc/7.8.4/bin:~/.cabal/bin:$PATH
@@ -40,7 +32,7 @@ cabal install alex happy
 
 # Further installation instructions from Jonas' mail
 cd /tmp
-curl -o cabal.config  http://www.stackage.org/snapshot/nightly-2015-02-24/cabal.config?global=true
+curl -o cabal.config http://www.stackage.org/snapshot/nightly-2015-02-24/cabal.config?global=true
 cat cabal.config ~/.cabal/config > /tmp/cabal.config-new
 mv /tmp/cabal.config-new ~/.cabal/config
 rm -f cabal.config*
