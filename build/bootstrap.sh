@@ -91,5 +91,3 @@ stop on runlevel [06]
 respawn
 exec /bin/su vagrant /home/vagrant/run_haskell_intro.sh
 EOF
-
-sudo sed -i '/^exit 0/i sudo -u /home/vagrant/run_haskell_intro.sh &'
