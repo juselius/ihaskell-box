@@ -16,7 +16,8 @@ sudo apt-get update
 sudo apt-get install -y cabal-install-1.20 ghc-7.8.4
 sudo apt-get install -y zlib1g-dev libzmq3-dev libtinfo-dev
 sudo apt-get install -y git zsh pkgconf
-sudo apt-get install -y ipython-notebook python-dev python-pip
+sudo apt-get install -y python-dev python-pip
+sudo apt-get remove -y w3m
 
 # we need ipython notebook from the 2.x branch, not 1.x and not 3.x
 sudo pip install --upgrade "ipython==2.3.0"
