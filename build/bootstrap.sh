@@ -74,6 +74,7 @@ fi
 git clone https://github.com/juselius/haskell-intro.git
 cat << EOF > ~/run_haskell_intro.sh
 #!/bin/bash
+PATH=/opt/cabal/1.20/bin:/opt/ghc/7.8.4/bin:/home/vagrant/.cabal/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 cd ~/haskell-intro
 git reset --hard HEAD
 git pull
